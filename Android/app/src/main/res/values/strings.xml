@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KotlinTraining</string>
+    <string name="main_add_note_button">Agregar Nota</string>
 </resources>
