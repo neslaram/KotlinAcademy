@@ -26,14 +26,4 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/spacing_md"
-        android:src="@drawable/ic_material_add"
-        android:tint="@android:color/white" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
