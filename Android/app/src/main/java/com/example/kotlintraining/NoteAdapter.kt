@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlintraining.Extensions.format
 import com.example.kotlintraining.model.Note
+import java.util.*
 
 class NoteAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
@@ -25,10 +27,16 @@ class NoteAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<No
         notifyItemInserted(0)
     }
 
+    fun setItems(notes: List<Note>) {
+        list.clear()
+        list.addAll(notes)
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(note: Note) {
-            view.findViewById<TextView>(R.id.title_text)?.text = note.text
-            view.findViewById<TextView>(R.id.date_text)?.text = note.date.toString()
+            view.findViewById<TextView>(R.id.title_text).text = note.text
+            view.findViewById<TextView>(R.id.date_text).text = Date(note.date).format("yyyy-MM-dd hh:mm")
         }
     }
 }

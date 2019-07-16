@@ -2,4 +2,5 @@
     <string name="app_name">KotlinTraining</string>
     <string name="main_add_note_button">Agregar Nota</string>
     <string name="main_input_hint">Título de la nota</string>
+    <string name="main_delete_notes_button">Borrar</string>
 </resources>

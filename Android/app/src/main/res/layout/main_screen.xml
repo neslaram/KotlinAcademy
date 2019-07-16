@@ -29,6 +29,12 @@
         android:enabled="false"
         android:text="@string/main_add_note_button" />
 
+    <Button
+        android:id="@+id/clearNotesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_delete_notes_button" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesList"
         android:layout_width="match_parent"

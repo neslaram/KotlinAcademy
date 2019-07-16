@@ -12,24 +12,28 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_screen.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainScreen {
 
     companion object {
         val TAG: String = MainActivity::class.java.name
     }
+
+    private var presenter: MainPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        addNoteButton?.setOnClickListener {
-            notesList?.let {
-                (it.adapter as? NoteAdapter)?.addItem(Note(textInput?.text.toString(), Date().time))
-                it.layoutManager?.scrollToPosition(0)
-            }
+        presenter = MainPresenterImpl(this, RepositoryImpl())
 
+        addNoteButton?.setOnClickListener {
+            presenter?.addNote(Note(textInput?.text.toString(), Date().time))
             textInput.setText("")
+        }
+
+        clearNotesButton?.setOnClickListener {
+            presenter?.deleteNotes()
         }
 
         textInput?.addTextChangedListener(object : TextWatcher {
@@ -47,5 +51,21 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
         }
+        presenter?.getNotes()
+    }
+
+    override fun onNotesLoaded(notes: List<Note>) {
+        (notesList?.adapter as NoteAdapter).setItems(notes)
+        notesList?.layoutManager?.scrollToPosition(0)
+    }
+
+    override fun onNoteAdded(note: Note) {
+        (notesList?.adapter as NoteAdapter).addItem(note)
+        notesList?.layoutManager?.scrollToPosition(0)
+    }
+
+    override fun onNotesDeleted(notes: List<Note>) {
+        (notesList?.adapter as NoteAdapter).setItems(notes)
+        notesList?.layoutManager?.scrollToPosition(0)
     }
 }
