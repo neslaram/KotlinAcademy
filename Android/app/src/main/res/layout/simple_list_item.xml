@@ -8,7 +8,7 @@
     android:padding="@dimen/spacing_sm">
 
     <TextView
-        android:id="@+id/title_textl"
+        android:id="@+id/title_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="@dimen/spacing_sm"
